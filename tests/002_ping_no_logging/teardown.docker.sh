@@ -1,0 +1,1 @@
+docker stop ch_sts_testserver
