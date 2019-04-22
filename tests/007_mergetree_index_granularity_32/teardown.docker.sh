@@ -1,1 +1,1 @@
-docker stop ch_sts_testserver
+source ../helpers/stop_clickhouse_server_docker.sh

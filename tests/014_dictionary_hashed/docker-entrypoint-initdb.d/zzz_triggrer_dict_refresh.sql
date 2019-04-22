@@ -1,0 +1,4 @@
+
+SYSTEM RELOAD DICTIONARIES;
+
+SELECT * FROM system.dictionaries;

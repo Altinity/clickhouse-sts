@@ -1,0 +1,45 @@
+<dictionaries>
+    <dictionary>
+        <name>fs12M</name>
+        <source>
+            <clickhouse>
+                <host>localhost</host>
+                <port>9000</port>
+                <user>default</user>
+                <password></password>
+                <db>default</db>
+                <table>fs12M</table>
+            </clickhouse>
+        </source>
+        <lifetime>0</lifetime>
+        <layout><hashed /></layout>
+        <structure>
+            <id><name>id</name></id>
+            <attribute>
+                <name>value1</name>
+                <type>Float32</type>
+                <null_value>0</null_value>
+            </attribute>
+            <attribute>
+                <name>value2</name>
+                <type>Float64</type>
+                <null_value>0</null_value>
+            </attribute>
+            <attribute>
+                <name>value3</name>
+                <type>UInt32</type>
+                <null_value>0</null_value>
+            </attribute>
+            <attribute>
+                <name>value4</name>
+                <type>UInt64</type>
+                <null_value>0</null_value>
+            </attribute>
+            <attribute>
+                <name>str_value</name>
+                <type>String</type>
+                <null_value></null_value>
+            </attribute>
+        </structure>
+    </dictionary>
+</dictionaries>

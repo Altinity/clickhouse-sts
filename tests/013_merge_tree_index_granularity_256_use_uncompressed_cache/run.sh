@@ -1,4 +1,4 @@
-CHSTS_TEST_NAME='010_merge_tree_index_granularity_256'
+CHSTS_TEST_NAME='013_merge_tree_index_granularity_256_use_uncompressed_cache'
 
 #CHSTS_CONCURRENCY_LEVELS='64 64' # we will check all concurrency levels for index granularity 256
 CHSTS_TEST_PROTOCOL='http'
