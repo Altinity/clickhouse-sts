@@ -1,0 +1,12 @@
+CHSTS_TEST_NAME='017_join_fs20M'
+
+CHSTS_TEST_PROTOCOL='http'
+CHSTS_CLICKHOUSE_HTTP_USE_KEEPALIVE=1
+source int20M_lookups.sh
+
+CHSTS_TEST_PROTOCOL='http'
+CHSTS_CLICKHOUSE_HTTP_USE_KEEPALIVE=0
+source int20M_lookups.sh
+
+CHSTS_TEST_PROTOCOL='tcp'
+source int20M_lookups.sh
