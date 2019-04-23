@@ -23,7 +23,7 @@ CHSTS_WRK_VERSION="$(wrk --version | head -n 1 | cut -d' ' -f1,2)"
 
 # write csv header is file not exists
 if [ ! -f $TARGET_CSV_FILENAME_FULL ]; then
-    echo 'server_version,client_version,test_name,test_subtype1,test_subtype2,test_subtype3,protocol,http_keepalive,concurrency,QPS,num_queries,MiBPS_result,latency_0percentile,latency_20percentile,latency_50percentile,latency_80percentile,latency_90percentile,latency_95percentile,latency_99percentile,latency_999percentile' > $TARGET_CSV_FILENAME_FULL
+    echo 'server_version,client_version,test_name,test_subtype1,test_subtype2,test_subtype3,protocol,http_keepalive,concurrency,QPS,num_queries,MiBPS_result,latency_0percentile,latency_20percentile,latency_50percentile,latency_80percentile,latency_90percentile,latency_95percentile,latency_99percentile,latency_999percentile,duration,errors' > $TARGET_CSV_FILENAME_FULL
 fi
 
 for CHSTS_TEST_CONCURRENCY in $CHSTS_CONCURRENCY_LEVELS; do 
@@ -62,7 +62,7 @@ for CHSTS_TEST_CONCURRENCY in $CHSTS_CONCURRENCY_LEVELS; do
         --arg protocol "$CHSTS_TEST_PROTOCOL" \
         --arg http_keepalive "$CHSTS_CLICKHOUSE_HTTP_USE_KEEPALIVE" \
         --arg concurrency $CHSTS_TEST_CONCURRENCY  \
-        -r '[$server_version,$client_version,$test_name,$test_subtype1,$test_subtype2,$test_subtype3,$protocol,$http_keepalive,$concurrency,.statistics.QPS,.statistics.num_queries,.statistics.MiBPS_result,.query_time_percentiles."0",.query_time_percentiles."20",.query_time_percentiles."50", .query_time_percentiles."80",.query_time_percentiles."90",.query_time_percentiles."95",.query_time_percentiles."99",.query_time_percentiles."99.9"] | @csv' \
+        -r '[$server_version,$client_version,$test_name,$test_subtype1,$test_subtype2,$test_subtype3,$protocol,$http_keepalive,$concurrency,.statistics.QPS,.statistics.num_queries,.statistics.MiBPS_result,.query_time_percentiles."0",.query_time_percentiles."20",.query_time_percentiles."50", .query_time_percentiles."80",.query_time_percentiles."90",.query_time_percentiles."95",.query_time_percentiles."99",.query_time_percentiles."99.9",.summary.duration,.summary.errors] | @csv' \
          >> $TARGET_CSV_FILENAME_FULL 
 
     rm $CHSTS_OUTPUT_JSON

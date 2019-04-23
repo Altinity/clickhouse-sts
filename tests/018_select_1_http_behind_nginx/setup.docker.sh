@@ -6,7 +6,9 @@ docker rm -f ch_sts_nginx &>/dev/null && echo 'Removed old container'
 docker run -d --rm  \
    --name ch_sts_nginx \
    --network=host \
-   --volume=$(pwd)/nginx.conf.d:/etc/nginx/conf.d \
+   --ulimit nofile=262144:262144 \
+   --volume=$(pwd)/nginx/conf.d:/etc/nginx/conf.d \
+   --volume=$(pwd)/nginx/nginx.conf:/etc/nginx/nginx.conf \
    nginx
 
 CHSTS_CLICKHOUSE_HTTP_BASE='http://127.0.0.1:18123/'
