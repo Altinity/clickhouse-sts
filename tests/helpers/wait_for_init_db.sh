@@ -11,4 +11,5 @@ do
    fi
 done
 
-sleep 1
+echo "Waiting for ports being opened"
+docker exec -i ch_sts_testserver wget --spider --quiet --tries=120 --waitretry=1 --retry-connrefused "http://localhost:8123/ping"

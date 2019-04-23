@@ -39,6 +39,11 @@ for CHSTS_TEST_CONCURRENCY in $CHSTS_CONCURRENCY_LEVELS; do
             source /scripts/run_http_benchmark.sh &> /dev/null 
         fi
     else 
+        # in my tests clickhouse-benchmark can't work with high-concurrency (probably too many threads) 
+        if [ "$CHSTS_TEST_CONCURRENCY" -ge 2100 ]; then
+            continue;
+        fi 
+
         reported_client_version="$CHSTS_CLICKHOUSE_CLIENT_VERSION"
         if [ "$CHSTS_VERBOSE" -eq 1 ]; then 
             source /scripts/run_clickhouse_benchmark.sh

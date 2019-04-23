@@ -1,3 +1,5 @@
+docker rm -f ch_sts_testserver &>/dev/null && echo 'Removed old container'
+
 docker run --rm -d \
    --name ch_sts_testserver \
    --network=host \
