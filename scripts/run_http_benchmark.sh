@@ -3,16 +3,16 @@
 ## simple wrapper for wrk (http benchmark utility), allows to control everything via env (nice for docker/k8)
 ## creates clickhouse requests & collect results in clickhouse-benchmark compatible json  
 
-CHSTS_CLICKHOUSE_HTTP_BASE=${CHSTS_CLICKHOUSE_HTTP_BASE:=http://127.0.0.1:8123/}
+CHSTS_CLICKHOUSE_HTTP_BASE=${CHSTS_CLICKHOUSE_HTTP_BASE:-http://127.0.0.1:8123/}
 # CHSTS_CLICKHOUSE_HTTP_USE_KEEPALIVE
 # CHSTS_CLICKHOUSE_QUERY
 
-CHSTS_WRK_TIMEOUT=${CHSTS_WRK_TIMEOUT:=30}
+# CHSTS_WRK_TIMEOUT
 # CHSTS_OUTPUT_JSON 
 # CHSTS_WRK_THREADS
 
-CHSTS_TEST_CONCURRENCY=${CHSTS_TEST_CONCURRENCY:=8}
-CHSTS_TEST_DURATION=${CHSTS_TEST_DURATION:=5}
+CHSTS_TEST_CONCURRENCY=${CHSTS_TEST_CONCURRENCY:-8}
+CHSTS_TEST_DURATION=${CHSTS_TEST_DURATION:-5}
 
 if [ -z $CHSTS_WRK_THREADS ]; then
   if (( $CHSTS_TEST_CONCURRENCY <= 8 )); then 
@@ -31,12 +31,11 @@ else
   CHSTS_CLICKHOUSE_URL=$(printf "%s?query=%s" "$CHSTS_CLICKHOUSE_HTTP_BASE" "$URL_ENCODED_QUERY")
 fi
 
-
 WRK_ARGUMENTS=(
   "-t $CHSTS_WRK_THREADS"
   "-c $CHSTS_TEST_CONCURRENCY"
   "-d $CHSTS_TEST_DURATION"
-  "--timeout $CHSTS_WRK_TIMEOUT"
+  "--timeout ${CHSTS_WRK_TIMEOUT:-30}"
   "--latency"
   "-s /scripts/report.lua"
   "'$CHSTS_CLICKHOUSE_URL'"

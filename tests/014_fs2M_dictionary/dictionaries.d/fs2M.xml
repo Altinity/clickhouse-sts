@@ -1,6 +1,6 @@
 <dictionaries>
     <dictionary>
-        <name>fs12M</name>
+        <name>fs2M</name>
         <source>
             <clickhouse>
                 <host>localhost</host>
@@ -8,13 +8,18 @@
                 <user>default</user>
                 <password></password>
                 <db>default</db>
-                <table>fs12M</table>
+                <table>fs2M</table>
             </clickhouse>
         </source>
         <lifetime>0</lifetime>
-        <layout><hashed /></layout>
+        <layout><complex_key_hashed /></layout>
         <structure>
-            <id><name>id</name></id>
+            <key>
+                <attribute>
+                    <name>id</name>
+                    <type>String</type>
+                </attribute>
+            </key>
             <attribute>
                 <name>value1</name>
                 <type>Float32</type>

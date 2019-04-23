@@ -1,9 +1,11 @@
-DROP TABLE IF EXISTS default.fs12M;
+DROP TABLE IF EXISTS default.fs2M;
 
 SET max_block_size=1048576;
 SET max_insert_block_size=1048576;
 
-CREATE TABLE default.fs12M
+-- fs12M is too big 
+
+CREATE TABLE default.fs2M
 ENGINE = MergeTree
 PARTITION BY tuple()
 ORDER BY id
@@ -15,4 +17,4 @@ SELECT
     rand(5) AS value3,
     rand64(6) AS value4,
     base64Encode(concat(reinterpretAsString(rand64(7)), reinterpretAsString(rand64(8)), toString(generateUUIDv4()))) AS str_value
-FROM numbers(12000000);
+FROM numbers(2000000);

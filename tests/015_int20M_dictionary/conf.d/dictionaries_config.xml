@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<yandex>
+    <dictionaries_config replace="replace">dictionaries.d/*.xml</dictionaries_config>
+</yandex>
