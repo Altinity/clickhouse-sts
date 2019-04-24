@@ -21,6 +21,8 @@ RUN apt-get update -y \
 
 COPY [ "scripts/" , "/scripts" ]
 
+COPY [ "config/clickhouse-client/conf.d", "/etc/clickhouse-client/conf.d"]
+
 # reset enrtypoint defined in clickhouse-client
 ENTRYPOINT []
 
